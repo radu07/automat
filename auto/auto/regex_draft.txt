@@ -1,0 +1,37 @@
+Inductive simplRegExp (a:Alphabet) :Set :=
+   | Empty : simplRegExp a
+   | Epsilon : simplRegExp a.
+(*Inductive RegExp (a:Alphabet) :Set :=
+
+  | con : simplRegExp a. *)
+
+
+Inductive biRegExp (a:Alphabet):Set :=
+    | Var : Fin a -> biRegExp a.
+
+
+Inductive multiRegExp(a:Alphabet):Set :=
+
+   | Plus : multiRegExp a -> multiRegExp a -> multiRegExp a
+   
+| Conc : multiRegExp a -> multiRegExp a -> multiRegExp a.
+
+Inductive unarRegExp(a:Alphabet):Set :=
+| Starex : unarRegExp a-> unarRegExp a
+
+| Paren : unarRegExp a-> unarRegExp a.
+   
+(*Inductive RegExp (a:Alphabet) :Set :=
+| Empty : RegExp a 
+
+| Epsilon : RegExp a
+
+| Var : Fin a -> RegExp a.
+
+| Plus : RegExp a -> RegExp a -> RegExp a
+
+| Conc : RegExp a -> RegExp a -> RegExp a
+
+| Starex : RegExp a-> RegExp a
+
+| Paren : RegExp a-> RegExp a. *)
