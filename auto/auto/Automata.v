@@ -82,22 +82,65 @@ Fixpoint deltah (n:nat)(a:Alphabet)(d: dfa n a)(q: Fin n) (w: Word a) : (Fin n):
      | nil => q
      | h :: t => (deltah d (delta  d q h ) t) 
   end.
+Lemma deltah_prop:
+  forall (a:Alphabet)(n:nat)(q:Fin n) (d:dfa n a) (xs ys :Word a),
+   deltah d (q) (xs++ ys) = deltah d (deltah d (q) xs) ys.
 
+induction xs.
+simpl in *.
+reflexivity.
+simpl in *.
+
+intros.
+simpl in *.
+(*induction ys.
+simpl in *.
+assert (xs++nil = xs).
+intuition.
+rewrite H.
+reflexivity.
+simpl in *.
+intuition. *)
+admit.
+Qed.
 Lemma deltah_property :
     forall (a:Alphabet)(n:nat) (d:dfa n a)(q:Fin n)(xs ys zs :Word a) ,
    deltah d (q) (xs ++ ys ++ zs) =
     deltah d(deltah d (deltah d (q) xs) ys ) zs.
+induction xs.
+simpl.
+induction ys.
+simpl in *.
+reflexivity.
+simpl in *.
+apply deltah_prop.
+
+
+simpl in *.
 intros.
+assert (xs ++ ys ++ zs = (xs ++ ys)++ zs).
+auto with *.
+admit.
+
+
+
+(*simpl in *.
+induction xs.
+
+
+induction zs.
+simpl in *.
 intuition.
-admit. 
+assert (ys ++ nil = ys).
+intuition.
+ (*very well known property*)
+rewrite H.
+reflexivity.
+simpl in *. *)
+
 Qed.
 
-Lemma deltah_prop:
-  forall (a:Alphabet)(n:nat)(q:Fin n) (d:dfa n a) (xs ys :Word a),
-   deltah d (q) (xs++ ys) = deltah d (deltah d (q) xs) ys.
-intuition.
-admit.
-Qed.
+
 Notation " x ^ y " := (exps x y).
 
 Definition dfa_lang1 (n:nat)(a:Alphabet)(d: dfa n a) :Language a := 
@@ -174,8 +217,6 @@ Inductive empty :Set := .
 Inductive singleton :Set := emptyx : singleton. 
 Print emptyx.
 
-Check None.
-Print None.
 
 
 (** Remove states that are unreachable !!! *)
@@ -303,15 +344,34 @@ Definition nfa_eps(a:Alphabet):nfa 1 a :=
 Print nfa_eps.
 
 Print option.
+
+Lemma nfa_eps_lang1 : forall (a:Alphabet)(w:Word a) ,
+     eps_lang w -> nfa_lang (nfa_eps a) w.
+intros.
+unfold eps_lang in H.
+unfold nfa_lang.
+simpl.
+split.
+Qed.
 Lemma nfa_eps_lang :forall (a:Alphabet) (w:Word a) ,
    nfa_lang (nfa_eps a) w -> eps_lang w.
 intros.
 unfold eps_lang.
-unfold isNil.
-unfold nfa_eps in H.
+
+unfold nfa_lang in H.
 simpl in *.
+
 admit.
 Qed.
+
+
+Definition nfa_var (a:Alphabet) :=
+
+   NFA (fun xs : Fin 2 => fun c:Fin a => 
+
+     allexp1 (fun ys : Fin 2 => eqf xs ys =false) )
+
+     (fun xs :Fin 2 =>   
 
 Definition nfa_var(a:Alphabet)(cc:Fin a)  :=
     NFA( fun it :Fin 2 => fun aa :Fin a =>  allexp1 (fun final:Fin 2=>if negb (eqf it final)&& eqf cc aa then true  else  false ))
