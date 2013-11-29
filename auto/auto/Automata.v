@@ -1,7 +1,7 @@
 
 (** %\chapter{%#<H0>#Finite automata%}%#</H0># *)
 
-
+(* Proofs *)
  Section Automata.
 (*Load FinSets.*)
 Load Finitesets.
