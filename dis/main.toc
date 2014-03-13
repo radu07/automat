@@ -1,0 +1,4 @@
+\contentsline {chapter}{ Introduction}{vii}
+\contentsline {chapter}{Type theory}{ix}
+\contentsline {subsection}{\numberline {0.0.1}Natural deduction}{x}
+\contentsline {paragraph}{Rules}{x}
