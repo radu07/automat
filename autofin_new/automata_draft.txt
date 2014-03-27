@@ -1,0 +1,112 @@
+(*
+Definition dfa_connected (a:Alphabet) (n:nat) (d:dfa n a) : dfa n a :=
+   DFA( fun xs :Fin n => fun c : Fin a => 
+       
+Lemma dfa_connected_correct (a:Alphabet)(n:nat) (d:dfa n a) :=
+
+
+    dfa_lang d *)
+ (*Definition reachable := enum (connect reachable1 (dfa_s A1)).*)
+(*
+
+Lemma reachable_step : forall (a:Alphabet) (n:nat) (d:dfa n a) (x:Fin n) (c:Fin a),
+
+   reachable x (delta d x c) *)
+
+(* x is an initial state *)
+(*Definition dfa_var (a:Alphabet) : dfa 2 a :=
+    DFA( fun x:Fin 2 => fun a:Fin a =>x  )(fun x:Fin 2 =>eqf *)
+(*
+Definition dfa_var (a:Alphabet)(q:Fin 2) : dfa 2 a := 
+    DFA (fun x:Fin 2 => fun a :Fin a => 
+
+    (q) (fun x:Fin 2 => delta q  ).
+
+
+
+Definition dfa_void(a:Alphabet)(q0:Fin 1): dfa 1 a := DFA( fun x: Fin 1 => fun a: Fin a=> x ) ( q0) ( tt).
+Print dfa_void. *)
+
+(*Definition dfa_var (a:Alphabet)(n:nat)(d:dfa n a) :dfa n a:= 
+
+  DFA (fun x: Fin n => fun c :Fin a => if eqf (q0 d) x then delta d x c else )
+                                  tt tt. *)
+
+
+(*
+Lemma dfa_epsilon_correct : forall (a:Alphabet)(q:Fin 1) (w:Word a),
+     dfa_lang (dfa_epsilon q a) w -> eps_lang w.
+intros.
+unfold eps_lang .
+unfold dfa_lang in H.
+simpl.
+simpl in H.
+induction w.
+split.
+simpl in IHw.
+simpl in H. *)
+
+
+(*
+Definition nfa_var1(a:Alphabet)(x:Fin a) : nfa 2 a:=
+
+   NFA (fun xs :Fin 2 => fun c :Fin a => allexp1(existsf1(fun y:Fin 2 =>
+           end))) tt tt. *)
+
+                 
+             
+(*
+Definition nfa_var(a:Alphabet)(cc:Fin a) :nfa 2 a :=
+     NFA (fun initial:Fin 2 => fun a:Fin a => eqf a cc && allexp1 (fun final:Fin 2=>if negb (eqf initial final) then true  else  false ))
+      (fun x : Fin 2 => existsf1 (fun y: Fin 2 => eqf x y) )
+    (fun x:Fin 2 => existsf1 ( fun y :Fin 2 => eqf x y)). *)
+
+
+
+(*
+Definition fhelp (p q:nat) (t: Fin (p+q)) : Fin p * Fin q .
+
+(fun xy : Fin (p+q) => let (x1,x2) := (fhelp p q xy)
+      in (nfinal x x1) || (nfinal y x2)).
+Defined. *)
+
+
+
+
+(*
+Definition nfa_disj (a:Alphabet)(p q :nat) ( x: nfa p a)( y :nfa q a) :nfa (p+q) a:= 
+  NFA (fun xs:(Fin (p+q))  =>fun (s:Fin a) =>  allexp1(finbool (allexp2(ndelta x  )) (allexp2( ndelta y xs s)) ) )(finbool (ninitial x) (ninitial y)) 
+(finbool (ninitial x) (ninitial y)) *)
+    (*
+
+
+
+(*Definition nfa_conc (a:Alphabet) (p:nat)(q:nat) (d:dfa p a) (e:dfa q a) : dfa (p+q)a :=
+    NFA( fun x:Fin (p+q)=>     ) (fun x:Fin n => inl
+   
+Definition nfa_var (a:Alphabet) : nfa 2 a :=
+  NFA ( fun x:Fin 2 => fun a:Fin a => allexp1(fun y:Fin 2 => if eqf x y then 
+     allexp1 (fun y:Fin 2=> if negb(eqf x y) then 
+
+Definition nfa_var (a:Alphabet) : nfa 2 a :=
+
+   NFA ( fun x:Fin 2 => fun a:Fin a => existsf1 (fun y :Fin 2 => eqf x y)  ) 
+       ( fun x: Fin 2 =>existsf1 (fun y :Fin 2=> eqf x y)
+        
+          
+                               
+       
+        (fun x:Fin 2 => existsf1 (fun y:Fin 2=> eqf x y))
+  
+Definition nfa_var (a:Alphabet) : nfa 2 a :=
+   NFA (fun x:Fin 2 => fun a: Fin a=>
+        allexp1 (fun y :Fin 2 => negb(eqf x y)   )) tt tt. *)
+
+
+(*Definition nfa_eps (a:Alphabet):nfa 1 a :=
+   
+     NFA(fun x:Fin 1 => fun a:Fin a => allexp1(fun y : Fin 1 =>true)) 
+      (fun x:Fin 1 =>true(*existsf1 (fun y:Fin 1 => true)*))
+       (fun x:Fin 1 =>true(*existsf1 (fun y:Fin 1 => true)*)). *)
+
+Print nfa_eps.

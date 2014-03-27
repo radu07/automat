@@ -1,0 +1,90 @@
+
+
+(** The meaning of regular expressions *)
+
+(** Definition Kleene star, encountered in the Introduction to Languages lecture *)
+
+
+
+Definition reg2nfa_simpl (a:Alphabet) (r:simplRegExp a) := 
+  
+    match r with
+ | Empty => nfa_void a
+
+ | Epsilon =>nfa_eps a
+
+ 
+  end.
+
+
+Definition reg2nfa_bi (a:Alphabet)(r:biRegExp a) :=
+
+  match r with
+  | Var xs => nfa_var xs
+
+ end.
+
+Fixpoint reg2nfa_multi (a:Alphabet) (r:multiRegExp a) :=
+
+  match r with 
+| Plus s1 s2 => match s1,s2 with 
+
+                | Var x, Var y => nfa_disj a (reg2nfa_bi s1)(reg2nfa_bi s2)
+                | Var x, Plus l1 l2 => nfa_disj a (reg2nfa_bi s1) (nfa_disj (reg2nfa_multi l1)(reg2nfa_multi l2))
+
+  
+
+     end
+
+end.
+
+Print reg2nfa.
+
+
+(** Defining a function that takes a regular expression as an input and produces its
+    corresponding language as an output 
+*)
+(*
+Fixpoint reg2lang (a:Alphabet)(r : RegExp a) : Language a :=
+ match r with 
+ | Empty => fun w:Word a =>False
+ | Epsilon => fun w:Word a => match w with  |nil => True
+                                            | _  => False
+                              end
+ | Var e => single_lang1 e
+ | Plus e1 e2 => lang_union (reg2lang e1) (reg2lang e2)
+ | Conc e1 e2 => lang_conc (reg2lang e1) (reg2lang e2)
+ | Starex e => Star (reg2lang e)
+ | Paren e => reg2lang e
+  end. *)
+
+
+(** Translating regular expressions to NFA *)
+
+(*Fixpoint re_to_dfa (a:Alphabet) (r:RegExp a) :=
+
+   match r with 
+
+   | Empty => dfa_void
+   
+    | Epsilon  => dfa_epsilon
+
+   | Var x => nfa2dfa (nfa_var a x)
+
+ end. *)
+
+  Print nfa.
+
+
+
+
+(** * Closure properties of regular languages : *)
+
+(** We shall prove some well known results that deal with languages that are regular. 
+
+   - _Closure under union_ :if 2 languages are regular, then their union  is also regular.
+*)
+
+Lemma union1 : forall (a:Alphabet)( l m :Language a) , l w
+
+
